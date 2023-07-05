@@ -1,0 +1,22 @@
+<p>todo-list works!</p>
+
+<!-- formulaire de soumission d'une tache -->
+<form (ngSubmit)="addTask(taskInput.value)">
+  <input type="text" #taskInput placeholder="Nouvelle tâche" required />
+  <button type="submit">Ajouter</button>
+</form>
+
+<!-- Affichage de la liste des taches -->
+<ul>
+  <!-- boucle -->
+  <li *ngFor="let task of tasks">
+    <!-- *ngFor => iteration sur chaque tache de la liste "tasks" du composant TodoListComponent -->
+    <input
+      type="checkbox"
+      [(ngModel)]="task.completed"
+      (change)="updateTaskStatus(task)"
+    />
+    <span [ngClass]="{ completed: task.completed }">{{ task.title }}</span>
+    <button (click)="deleteTask(task)">Supprimer</button>
+  </li>
+</ul>
